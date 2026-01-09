@@ -1,83 +1,3 @@
-<template>
-  <div class="container">
-    <h1>Discord PNGTuber Generator</h1>
-
-    <p>
-      This tool helps you generate custom CSS for <a href="https://streamkit.discord.com/overlay">Discord streamkit overlay</a> to replace user avatars with PNG images that change based on their speaking status. Configure global settings and add users with their respective idle and speaking images to create your personalized CSS.
-    </p>
-
-    <div class="card settings">
-      <h2>Global Settings</h2>
-      <div class="row">
-        <label>
-          Bounce Height (px):
-          <input type="number" v-model="settings.bounceHeight">
-        </label>
-        <label>
-          Dim Idle Users:
-          <select v-model="settings.dimIdle">
-            <option :value="true">Yes (50% Brightness)</option>
-            <option :value="false">No (100% Brightness)</option>
-          </select>
-        </label>
-      </div>
-      <div class="row">
-        <label>
-          Hide Names:
-          <input type="checkbox" v-model="settings.hideNames">
-        </label>
-        <label>
-          Hide Users Not in List:
-          <input type="checkbox" v-model="settings.hideNotInList">
-        </label>
-        <label>
-          Hide Myself:
-          <input type="text" v-model="settings.myId" placeholder="e.g. 123456789012345678">
-        </label>
-      </div>
-    </div>
-
-    <div class="users-section">
-      <h2>Users</h2>
-      <div v-for="(user, index) in users" :key="index" class="card user-card">
-        <div class="card-header">
-          <h3>User {{ index + 1 }}</h3>
-          <button @click="removeUser(index)" class="btn-delete" v-if="users.length > 1">Remove</button>
-        </div>
-
-        <div class="row">
-          <div class="input-group">
-            <label>Discord User ID</label>
-            <input type="text" v-model="user.id" placeholder="e.g. 123456789012345678">
-            <small>Right click user in Discord -> Copy ID</small>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-group">
-            <label>Idle Image URL</label>
-            <input type="text" v-model="user.idleUrl" placeholder="https://...">
-          </div>
-          <div class="input-group">
-            <label>Speaking Image URL</label>
-            <input type="text" v-model="user.speakingUrl" placeholder="https://...">
-          </div>
-        </div>
-      </div>
-
-      <button @click="addUser" class="btn-add">+ Add Another User</button>
-    </div>
-
-    <div class="output-section">
-      <h2>Generated CSS</h2>
-      <textarea readonly :value="generatedCss" rows="15"></textarea>
-      <button @click="copyToClipboard" class="btn-copy">
-        {{ copied ? 'Copied!' : 'Copy CSS' }}
-      </button>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import {ref, reactive, computed, watch, onMounted} from 'vue';
 
@@ -225,6 +145,86 @@ img[class*="Speaking"][src*="${user.id}"] {
   return css;
 });
 </script>
+
+<template>
+  <div class="container">
+    <h1>Discord PNGTuber Generator</h1>
+
+    <p>
+      This tool helps you generate custom CSS for <a href="https://streamkit.discord.com/overlay">Discord streamkit overlay</a> to replace user avatars with PNG images that change based on their speaking status. Configure global settings and add users with their respective idle and speaking images to create your personalized CSS.
+    </p>
+
+    <div class="card settings">
+      <h2>Global Settings</h2>
+      <div class="row">
+        <label>
+          Bounce Height (px):
+          <input type="number" v-model="settings.bounceHeight">
+        </label>
+        <label>
+          Dim Idle Users:
+          <select v-model="settings.dimIdle">
+            <option :value="true">Yes (50% Brightness)</option>
+            <option :value="false">No (100% Brightness)</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>
+          Hide Names:
+          <input type="checkbox" v-model="settings.hideNames">
+        </label>
+        <label>
+          Hide Users Not in List:
+          <input type="checkbox" v-model="settings.hideNotInList">
+        </label>
+        <label>
+          Hide Myself:
+          <input type="text" v-model="settings.myId" placeholder="e.g. 123456789012345678">
+        </label>
+      </div>
+    </div>
+
+    <div class="users-section">
+      <h2>Users</h2>
+      <div v-for="(user, index) in users" :key="index" class="card user-card">
+        <div class="card-header">
+          <h3>User {{ index + 1 }}</h3>
+          <button @click="removeUser(index)" class="btn-delete" v-if="users.length > 1">Remove</button>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label>Discord User ID</label>
+            <input type="text" v-model="user.id" placeholder="e.g. 123456789012345678">
+            <small>Right click user in Discord -> Copy ID</small>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label>Idle Image URL</label>
+            <input type="text" v-model="user.idleUrl" placeholder="https://...">
+          </div>
+          <div class="input-group">
+            <label>Speaking Image URL</label>
+            <input type="text" v-model="user.speakingUrl" placeholder="https://...">
+          </div>
+        </div>
+      </div>
+
+      <button @click="addUser" class="btn-add">+ Add Another User</button>
+    </div>
+
+    <div class="output-section">
+      <h2>Generated CSS</h2>
+      <textarea readonly :value="generatedCss" rows="15"></textarea>
+      <button @click="copyToClipboard" class="btn-copy">
+        {{ copied ? 'Copied!' : 'Copy CSS' }}
+      </button>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 body {
