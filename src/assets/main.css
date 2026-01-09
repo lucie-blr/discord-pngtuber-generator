@@ -1,0 +1,128 @@
+@import './base.css';
+
+#app {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+
+    min-height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-accent);
+    transition: 0.4s;
+    padding: 3px;
+}
+
+a:hover {
+    color: var(--color-accent-strong);
+    cursor: pointer;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+p > strong {
+    font-weight: 400;
+    color: var(--color-text-strong);
+}
+
+h1, h2 {
+    color: var(--color-heading);
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--color-heading);
+    margin-bottom: 10px;
+}
+
+h1 > strong, h2 > strong, h3 > strong {
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: var(--color-accent);
+    color: var(--color-text-strong);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background: var(--color-accent-strong);
+}
+
+.title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.title h2, .title a {
+    flex: 1;
+}
+
+.title a {
+    text-align: right;
+    font-size: 1.2rem;
+    min-width: 100px;
+    color: var(--color-text-strong);
+}
+
+.title a:hover {
+    color: var(--color-accent-strong);
+}
+
+.title hr {
+    width: 100%;
+    margin-left: 10px;
+    height: 2px;
+    background: var(--color-accent);
+    border: none;
+}
+
+@media (min-width: 1024px) {
+    body {
+        display: flex;
+        place-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    #app {
+        gap: 20px;
+    }
+
+    h1, h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1em;
+    }
+}
