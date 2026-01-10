@@ -211,6 +211,7 @@ img[class*="Speaking"][src*="${user.id}"] {
             <input type="text" v-model="user.speakingUrl" placeholder="https://...">
           </div>
         </div>
+        <small>Images must be posted and hosted on discord.</small>
       </div>
 
       <button @click="addUser" class="btn-add">+ Add Another User</button>
